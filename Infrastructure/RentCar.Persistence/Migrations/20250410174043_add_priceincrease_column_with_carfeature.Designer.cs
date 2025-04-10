@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RentCar.Persistence.Context;
 
@@ -11,9 +12,11 @@ using RentCar.Persistence.Context;
 namespace RentCar.Persistence.Migrations
 {
     [DbContext(typeof(RentCarContext))]
-    partial class CarBookContextModelSnapshot : ModelSnapshot
+    [Migration("20250410174043_add_priceincrease_column_with_carfeature")]
+    partial class add_priceincrease_column_with_carfeature
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -466,9 +469,6 @@ namespace RentCar.Persistence.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("PriceIncrease")
-                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("FeatureID");
 

@@ -12,3 +12,43 @@
 		</li>
 	</ul>
 </div>
+@* 
+<div class="car-features">
+    <h3>Ek Özellikler</h3>
+    <form id="feature-form">
+        @foreach (var feature in Model.Features)
+        {
+            <div class="form-check">
+                <input class="form-check-input feature-checkbox" type="checkbox"
+                       id="feature-@feature.FeatureID"
+                       data-price="@feature.PriceIncrease" />
+                <label class="form-check-label" for="feature-@feature.FeatureID">
+                    @feature.Name (@feature.PriceIncrease ₺)
+                </label>
+            </div>
+        }
+    </form>
+</div>
+
+<div class="car-price">
+    <h4>Toplam Fiyat: <span id="total-price">@Model.BasePrice</span> ₺</h4>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const featureCheckboxes = document.querySelectorAll(".feature-checkbox");
+        const totalPriceElement = document.getElementById("total-price");
+        let basePrice = parseFloat(totalPriceElement.textContent);
+
+        featureCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener("change", function () {
+                const priceIncrease = parseFloat(this.dataset.price);
+                if (this.checked) {
+                    basePrice += priceIncrease; // Özellik seçildiğinde fiyat artırılır
+                } else {
+                    basePrice -= priceIncrease; // Özellik kaldırıldığında fiyat azaltılır
+                }
+                totalPriceElement.textContent = basePrice.toFixed(2); // Güncellenmiş fiyatı göster
+            });
+        });
+    });
+</script> *@

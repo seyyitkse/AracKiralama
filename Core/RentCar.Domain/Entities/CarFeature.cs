@@ -14,6 +14,7 @@ namespace RentCar.Domain.Entities
         public int FeatureID { get; set; }
         public Feature Feature { get; set; }
         public bool Available { get; set; }
-        public int MyProperty { get; set; }
+        public decimal PriceIncrease { get; set; } // Özelliğin fiyat artırımı
+
     }
 }

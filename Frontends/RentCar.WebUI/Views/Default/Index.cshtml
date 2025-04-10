@@ -36,6 +36,11 @@
                                     @Html.DropDownListFor(x => x.LocationID, (List<SelectListItem>)ViewBag.v, new { @class = "form-control", @id = "drop" })
                                 </div>
 
+                                <div class="form-group">
+                                    <label for="return_location" class="label">Teslim Edilecek Lokasyon</label>
+                                    @Html.DropDownListFor(x => x.LocationID, (List<SelectListItem>)ViewBag.ReturnLocations, new { @class = "form-control", @id = "return_location" })
+                                </div>
+
                                 <div class="d-flex">
                                     <div class="form-group mr-2">
                                         <label for="pickup_date" class="label">Alınmak İstenen Tarih</label>
@@ -60,6 +65,7 @@
                                     <button type="submit" class="btn btn-secondary py-3 px-4">Uygun Araçları Listele</button>
                                 </div>
                             </form>
+
                         </div>
                         <div class="col-md-8 d-flex align-items-center">
                             <div class="services-wrap rounded-right w-100">

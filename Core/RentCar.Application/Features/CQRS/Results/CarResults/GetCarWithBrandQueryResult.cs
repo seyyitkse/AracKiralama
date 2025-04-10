@@ -19,5 +19,8 @@ namespace RentCar.Application.Features.CQRS.Results.CarResults
         public byte Luggage { get; set; }
         public string Fuel { get; set; }
         public string BigImageUrl { get; set; }
+        public decimal? DailyAmount { get; set; }
+        public decimal? WeeklyAmount { get; set; }
+        public decimal? MonthlyAmount { get; set; }
     }
 }

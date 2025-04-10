@@ -18,23 +18,38 @@ namespace RentCar.Application.Features.CQRS.Handlers.CarHandlers
         {
             _repository = repository;
         }
+
         public List<GetCarWithBrandQueryResult> Handle()
         {
-            var values = _repository.GetLast5CarsWithBrands();
-            return values.Select(x => new GetCarWithBrandQueryResult
+            var cars = _repository.GetLast5CarsWithBrands();
+
+            return cars.Select(car =>
             {
-                BrandName = x.Brand.Name,
-                BrandID = x.BrandID,
-                BigImageUrl = x.BigImageUrl,
-                CarID = x.CarID,
-                CoverImageUrl = x.CoverImageUrl,
-                Fuel = x.Fuel,
-                Km = x.Km,
-                Luggage = x.Luggage,
-                Model = x.Model,
-                Seat = x.Seat,
-                Transmission = x.Transmission
+                // Fiyat bilgilerini al
+                var dailyAmount = car.CarPricings.FirstOrDefault(p => p.Pricing.Name == "Gunluk")?.Amount;
+                var weeklyAmount = car.CarPricings.FirstOrDefault(p => p.Pricing.Name == "Haftalik")?.Amount;
+                var monthlyAmount = car.CarPricings.FirstOrDefault(p => p.Pricing.Name == "Aylik")?.Amount;
+
+
+                return new GetCarWithBrandQueryResult
+                {
+                    CarID = car.CarID,
+                    BrandID = car.BrandID,
+                    BrandName = car.Brand.Name,
+                    Model = car.Model,
+                    CoverImageUrl = car.CoverImageUrl,
+                    Km = car.Km,
+                    Transmission = car.Transmission,
+                    Seat = car.Seat,
+                    Luggage = car.Luggage,
+                    Fuel = car.Fuel,
+                    BigImageUrl = car.BigImageUrl,
+                    DailyAmount = dailyAmount,
+                    WeeklyAmount = weeklyAmount,
+                    MonthlyAmount = monthlyAmount
+                };
             }).ToList();
         }
+
     }
 }

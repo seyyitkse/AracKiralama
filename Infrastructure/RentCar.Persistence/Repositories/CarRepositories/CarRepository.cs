@@ -31,8 +31,14 @@ namespace RentCar.Persistence.Repositories.CarRepositories
         }
         public List<Car> GetLast5CarsWithBrands()
         {
-            var values = _context.Cars.Include(x => x.Brand).OrderByDescending(x => x.CarID).Take(5).ToList();
-            return values;
+            return _context.Cars
+                .Include(c => c.Brand)
+                .Include(c => c.CarPricings) // CarPricing tablosunu dahil et
+                .ThenInclude(cp => cp.Pricing) // Pricing bilgilerini de dahil et
+                .OrderByDescending(c => c.CarID)
+                .Take(5)
+                .ToList();
         }
+
     }
 }
